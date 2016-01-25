@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">红豆锁屏</string>
+    <string name="Info">尊敬的红豆锁屏内测用户，您现有积分总数为%1$d分，今日已获得%2$d分，积分商城正在开发完善中，手机、话费、大礼包等你来拿！敬请关注红豆电信官网www.hodo170.com。</string>
+    <string name="分享">分\n享</string>
+    <string name="解锁">解\n锁</string>
+</resources>

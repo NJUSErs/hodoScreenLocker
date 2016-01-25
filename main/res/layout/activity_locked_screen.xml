@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTranslucent"
+    android:orientation="horizontal">
+
+    <!-- 顶部的时间区域-->
+    <RelativeLayout
+        android:id="@+id/TimeArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <!--时钟-->
+        <TextView
+            android:id="@+id/theClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true" />
+        <!--时刻-->
+        <TextView
+            android:id="@+id/timeOfTheDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/theClock"
+            android:layout_marginBottom="4dp"
+            android:layout_toRightOf="@id/theClock" />
+        <!--日期-->
+        <TextView
+            android:id="@+id/theDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/theClock" />
+        <!--星期几-->
+        <TextView
+            android:id="@+id/dayOfTheWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/theDate" />
+        <!--农历-->
+        <TextView
+            android:id="@+id/theLunarCalendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@id/theClock" />
+        <!--节日、节气-->
+        <TextView
+            android:id="@+id/theHoliday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/theDate" />
+    </RelativeLayout>
+
+    <!--底部滚动信息条-->
+    <TextView
+        android:id="@+id/BottomInfoBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true" />
+
+    <!--中间的区域，因为需要依靠底端定位所以放在了下面写-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/BottomInfoBar"
+        android:layout_below="@+id/TimeArea"
+        android:layout_margin="5dp"
+        android:background="@color/colorWhite">
+        <!--备忘提醒区域-->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:scrollbarStyle="outsideOverlay">
+
+            <TextView
+                android:id="@+id/ReminderArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorLightTranslucent"
+                android:lineSpacingExtra="4dp"
+                android:padding="10dp"
+                android:textSize="15dp" />
+        </ScrollView>
+        <!--操作区域的背景-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/OpreateArea"
+            android:background="@color/colorLightTranslucent">
+
+            <TextView
+                android:id="@+id/LeftText2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="向右滑动解锁"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/RightText2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:gravity="center"
+                android:text="向左滑动分享"
+                android:textSize="25dp" />
+        </RelativeLayout>
+        <!--操作区域-->
+        <RelativeLayout
+            android:id="@+id/OpreateArea"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="10dp">
+            <!--左侧分享两字-->
+            <TextView
+                android:id="@+id/LeftText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/分享"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
+            <!--右侧解锁两字-->
+            <TextView
+                android:id="@+id/RightText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/解锁"
+                android:textColor="@color/colorWhite"
+                android:textSize="15dp" />
+            <!--左侧第一个图标和上面的数字-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/LeftText1">
+                <!--左侧第一个图标-->
+                <TextView
+                    android:id="@+id/LeftIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <!--左侧第一个图标上的数字-->
+                <TextView
+                    android:id="@+id/LeftNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+            <!--右侧第一个图标和上面的数字-->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/RightText1">
+                <!--右侧第一个图标-->
+                <TextView
+                    android:id="@+id/RightIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <!--右侧第一个图标上的数字-->
+                <TextView
+                    android:id="@+id/RightNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+            </RelativeLayout>
+            <!--中间的图标和两个箭头-->
+            <TextView
+                android:id="@+id/CentralIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:background="@color/colorWhite" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
