@@ -33,7 +33,7 @@ import njusoftware.hodoScreenLocker.Toolkit.UnitConverter;
 * */
 public class LockedScreenActivity extends AppCompatActivity {
     private TextView theClock, timeOfTheDay, theDate, dayOfTheWeek, theLunarCalendar, theSolarTermAndHoliday, ReminderArea, BottomInfoBar,
-            RightNumber, RightIcon, LeftNumber, LeftIcon, CentralIcon, LeftText1, LeftText2, RightText1, RightText2;
+            RightNumber, RightIcon, LeftNumber, LeftIcon, CentralIcon, LeftText1, LeftText2, RightText1, RightText2, LeftArrow, RightArrow;
     private ViewGroup OpreateArea;
     private TimeChangeReceiver tcr;
     public static boolean isRun = false;
@@ -129,6 +129,8 @@ public class LockedScreenActivity extends AppCompatActivity {
         LeftText2 = (TextView) findViewById(R.id.LeftText2);
         RightText1 = (TextView) findViewById(R.id.RightText1);
         RightText2 = (TextView) findViewById(R.id.RightText2);
+        LeftArrow = (TextView) findViewById(R.id.LeftArrow);
+        RightArrow = (TextView) findViewById(R.id.RightArrow);
     }
 
     private void refreshAll() {
@@ -278,15 +280,15 @@ public class LockedScreenActivity extends AppCompatActivity {
                 case MotionEvent.ACTION_MOVE:
                     OpreateArea.offsetLeftAndRight(x - lastX);//实现随划动改变位置
                     if (OpreateArea.getX() > 0) {
-                        LeftText2.setAlpha(OpreateArea.getX() / 540);//这些效果……自己运行了看吧
-                        hideIcons(OpreateArea.getX());
+                        LeftText2.setAlpha(Math.min((OpreateArea.getX() / 400),1));//这些效果……自己运行了看吧
+                        hideIcons(OpreateArea.getX(), true);
                         if (OpreateArea.getX() > getResources().getDisplayMetrics().widthPixels * 0.44) {//实现右划解锁,这个数值是大略地推算了下的
                             finish();
                         }
                     }
                     if (OpreateArea.getX() < 0) {
-                        RightText2.setAlpha((-OpreateArea.getX()) / 540);
-                        hideIcons(-OpreateArea.getX());
+                        RightText2.setAlpha(Math.min(((-OpreateArea.getX()) / 400), 1));
+                        hideIcons(-OpreateArea.getX(), false);
                         if (OpreateArea.getX() < -getResources().getDisplayMetrics().widthPixels * 0.44)
                             share("http://www.baidu.com/");//这只是个demo
                     }
@@ -294,7 +296,13 @@ public class LockedScreenActivity extends AppCompatActivity {
                 case MotionEvent.ACTION_UP:
                     OpreateArea.offsetLeftAndRight(-(int) OpreateArea.getX());//松开手指后回到原位置
                     RightText1.setAlpha(1);
+                    RightNumber.setAlpha(1);
+                    RightIcon.setAlpha(1);
+                    RightArrow.setAlpha(1);
                     LeftText1.setAlpha(1);
+                    LeftNumber.setAlpha(1);
+                    LeftIcon.setAlpha(1);
+                    LeftArrow.setAlpha(1);
                     RightText2.setAlpha(0);
                     LeftText2.setAlpha(0);
                     break;
@@ -302,14 +310,20 @@ public class LockedScreenActivity extends AppCompatActivity {
             return true;
         }
 
-        private void hideIcons(float f) {
-            float temp = (1 - OpreateArea.getX() / 540) / 10;
-            RightText1.setAlpha(temp);
-            RightIcon.setAlpha(temp);
-            RightNumber.setAlpha(temp);
-            LeftText1.setAlpha(temp);
-            LeftIcon.setAlpha(temp);
-            LeftNumber.setAlpha(temp);
+        private void hideIcons(float f, boolean direction) {
+            float temp = (1 - OpreateArea.getX() / 540) /20;
+            if (!direction) {
+                RightArrow.setAlpha(temp);
+                RightText1.setAlpha(temp);
+                RightIcon.setAlpha(temp);
+                RightNumber.setAlpha(temp);
+            }
+            else {
+                LeftArrow.setAlpha(temp);
+                LeftText1.setAlpha(temp);
+                LeftIcon.setAlpha(temp);
+                LeftNumber.setAlpha(temp);
+            }
         }
     }
 

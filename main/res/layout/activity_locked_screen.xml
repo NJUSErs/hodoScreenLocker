@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_below="@id/theDate" />
+        <!-- 用于弹出备忘录的箭头-->
     </RelativeLayout>
 
     <!--底部滚动信息条-->
@@ -69,12 +70,13 @@
 
     <!--中间的区域，因为需要依靠底端定位所以放在了下面写-->
     <RelativeLayout
+        android:id="@+id/CenterArea"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/BottomInfoBar"
         android:layout_below="@+id/TimeArea"
         android:layout_margin="5dp"
-        android:background="@color/colorWhite">
+        android:background="@drawable/background">
         <!--备忘提醒区域-->
         <ScrollView
             android:layout_width="match_parent"
@@ -90,6 +92,7 @@
                 android:padding="10dp"
                 android:textSize="15dp" />
         </ScrollView>
+
         <!--操作区域的背景-->
         <RelativeLayout
             android:layout_width="match_parent"
@@ -105,7 +108,9 @@
                 android:layout_marginLeft="20dp"
                 android:gravity="center"
                 android:text="向右滑动解锁"
-                android:textSize="25dp" />
+                android:textColor="@color/colorWhite"
+                android:textSize="25dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/RightText2"
@@ -115,7 +120,9 @@
                 android:layout_marginRight="20dp"
                 android:gravity="center"
                 android:text="向左滑动分享"
-                android:textSize="25dp" />
+                android:textColor="@color/colorWhite"
+                android:textSize="25dp"
+                android:textStyle="bold" />
         </RelativeLayout>
         <!--操作区域-->
         <RelativeLayout
@@ -130,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:text="@string/分享"
                 android:textColor="@color/colorWhite"
                 android:textSize="15dp" />
@@ -139,6 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:text="@string/解锁"
                 android:textColor="@color/colorWhite"
                 android:textSize="15dp" />
@@ -146,47 +155,80 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/LeftText1">
                 <!--左侧第一个图标-->
                 <TextView
                     android:id="@+id/LeftIcon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sideicon" />
                 <!--左侧第一个图标上的数字-->
                 <TextView
                     android:id="@+id/LeftNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" />
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/_5" />
             </RelativeLayout>
             <!--右侧第一个图标和上面的数字-->
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/RightText1">
                 <!--右侧第一个图标-->
                 <TextView
                     android:id="@+id/RightIcon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/sideicon" />
                 <!--右侧第一个图标上的数字-->
                 <TextView
                     android:id="@+id/RightNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" />
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/_3" />
             </RelativeLayout>
             <!--中间的图标和两个箭头-->
-            <TextView
-                android:id="@+id/CentralIcon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true"
-                android:background="@color/colorWhite" />
-
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true">
+                <!--中央图标-->
+                <TextView
+                    android:id="@+id/CentralIcon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/centralicon" />
+                <!-- 左向箭头-->
+                <TextView
+                    android:id="@+id/LeftArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="20dp"
+                    android:layout_toLeftOf="@+id/CentralIcon"
+                    android:background="@drawable/leftarrow" />
+                <!-- 右向箭头-->
+                <TextView
+                    android:id="@+id/RightArrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/CentralIcon"
+                    android:background="@drawable/rightarrow" />
+            </RelativeLayout>
         </RelativeLayout>
-
-
     </RelativeLayout>
-
+    <!-- 弹出备忘录的按钮-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_above="@+id/CenterArea"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/downarrow" />
 </RelativeLayout>
